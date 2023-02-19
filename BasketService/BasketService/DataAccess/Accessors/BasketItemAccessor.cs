@@ -23,6 +23,7 @@ namespace BasketService.DataAccess.Accessors
         public IDataResponse<BasketItem> Post(BasketItem entity)
         {
             // OJN: Check basket exists here first.
+            // OJN: Check the item ID given is valid.
 
             try
             {
@@ -66,6 +67,7 @@ VALUES (@BasketID, @ItemID, @Quantity)";
         public IDataResponse<BasketItem> Delete(BasketItem entity)
         {
             // OJN: Check basket exists here first.
+            // OJN: Check item exists in basket.
 
             try
             {
