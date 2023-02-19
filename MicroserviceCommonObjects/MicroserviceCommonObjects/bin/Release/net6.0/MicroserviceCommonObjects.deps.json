@@ -6,7 +6,7 @@
   "compilationOptions": {},
   "targets": {
     ".NETCoreApp,Version=v6.0": {
-      "MicroserviceCommonObjects/1.2.8.0": {
+      "MicroserviceCommonObjects/1.3.0.0": {
         "runtime": {
           "MicroserviceCommonObjects.dll": {}
         }
@@ -14,7 +14,7 @@
     }
   },
   "libraries": {
-    "MicroserviceCommonObjects/1.2.8.0": {
+    "MicroserviceCommonObjects/1.3.0.0": {
       "type": "project",
       "serviceable": false,
       "sha512": ""

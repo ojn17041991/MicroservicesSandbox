@@ -2,11 +2,9 @@
 {
     public class BasketItem
     {
-        public int ProductId { get; set; } = default(int);
+        public int BasketId { get; set; } = default(int);
 
-        public string ProductName { get; set; } = string.Empty;
-
-        public string ProductDescription { get; set; } = string.Empty;
+        public int ItemId { get; set; } = default(int);
 
         public int Quantity { get; set; } = default(int);
     }
