@@ -1,0 +1,12 @@
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\bin\Debug\net6.0\MicroserviceCommonObjects.deps.json
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\bin\Debug\net6.0\MicroserviceCommonObjects.dll
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\bin\Debug\net6.0\MicroserviceCommonObjects.pdb
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.csproj.AssemblyReference.cache
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.GeneratedMSBuildEditorConfig.editorconfig
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.AssemblyInfoInputs.cache
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.AssemblyInfo.cs
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.csproj.CoreCompileInputs.cache
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.dll
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\refint\MicroserviceCommonObjects.dll
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\MicroserviceCommonObjects.pdb
+C:\Users\Oliver\source\repos\MicroservicesSandbox\MicroserviceCommonObjects\MicroserviceCommonObjects\obj\Debug\net6.0\ref\MicroserviceCommonObjects.dll
