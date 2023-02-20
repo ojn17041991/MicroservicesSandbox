@@ -11,7 +11,7 @@ builder.Services.AddControllers();
 builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
-string connectionString = builder.Configuration.GetConnectionString("BasketDB");
+string connectionString = builder.Configuration.GetConnectionString("ItemDB");
 builder.Services.AddSingleton<DbConnection>(new NpgsqlConnection(connectionString));
 builder.Services.AddSingleton<IItemAccessor, ItemAccessor>();
 builder.Services.AddSingleton<IDataResponseFactory<Item>, ItemResponseFactory>();

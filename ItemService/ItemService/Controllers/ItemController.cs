@@ -1,4 +1,7 @@
 ﻿using ItemService.DataAccess.Accessors.Abstract;
+using ItemService.Models;
+using MicroserviceCommonObjects.Data.DataResponses.Abstract;
+using MicroserviceCommonObjects.Enums;
 using Microsoft.AspNetCore.Mvc;
 
 namespace ItemService.Controllers
@@ -14,31 +17,23 @@ namespace ItemService.Controllers
             this.itemAccessor = itemAccessor;
         }
 
-        [HttpGet]
-        public IEnumerable<string> Get()
-        {
-            return new string[] { "value1", "value2" };
-        }
-
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
-        }
+            IDataResponse<Item> response = itemAccessor.Get(id);
 
-        [HttpPost]
-        public void Post([FromBody] string value)
-        {
-        }
-
-        [HttpPut("{id}")]
-        public void Put(int id, [FromBody] string value)
-        {
-        }
-
-        [HttpDelete("{id}")]
-        public void Delete(int id)
-        {
+            if (response.ResponseCode == DataResponseCode.OK)
+            {
+                return Ok(response.Entity);
+            }
+            else if (response.ResponseCode == DataResponseCode.ResourceNotFound)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

@@ -6,8 +6,16 @@ namespace ItemService.DataAccess.Responses
 {
     public class ItemResponse : IDataResponse<Item>
     {
-        public Item Entity => throw new NotImplementedException();
+        public ItemResponse(Item entity, DataResponseCode responseCode)
+        {
+            Entity = entity;
+            ResponseCode = responseCode;
+        }
 
-        public DataResponseCode ResponseCode => throw new NotImplementedException();
+
+
+        public Item Entity { get; }
+
+        public DataResponseCode ResponseCode { get; }
     }
 }

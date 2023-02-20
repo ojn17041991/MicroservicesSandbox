@@ -1,4 +1,5 @@
-﻿using ItemService.Models;
+﻿using ItemService.DataAccess.Responses;
+using ItemService.Models;
 using MicroserviceCommonObjects.Data.DataResponses.Abstract;
 using MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract;
 using MicroserviceCommonObjects.Enums;
@@ -9,7 +10,7 @@ namespace ItemService.DataAccess.Factories
     {
         public IDataResponse<Item> CreateResponse(Item entity, DataResponseCode responseCode)
         {
-            throw new NotImplementedException();
+            return new ItemResponse(entity, responseCode);
         }
     }
 }
