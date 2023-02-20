@@ -1,4 +1,6 @@
-﻿CREATE TABLE Items (ID INT, Name VARCHAR(100), Description VARCHAR(256)
+﻿CREATE DATABASE Item;
+
+CREATE TABLE Items (ID INT, Name VARCHAR(100), Description VARCHAR(256)
 	CONSTRAINT PK_ItemID PRIMARY KEY(ID)
 );
 INSERT INTO Items (ID, Name, Description) VALUES (1, 'Apple', 'A fresh, whole apple.');
