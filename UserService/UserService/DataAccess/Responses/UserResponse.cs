@@ -6,8 +6,16 @@ namespace UserService.DataAccess.Responses
 {
     public class UserResponse : IDataResponse<User>
     {
-        public User Entity => throw new NotImplementedException();
+        public UserResponse(User entity, DataResponseCode responseCode)
+        {
+            Entity = entity;
+            ResponseCode = responseCode;
+        }
 
-        public DataResponseCode ResponseCode => throw new NotImplementedException();
+
+
+        public User Entity { get; }
+
+        public DataResponseCode ResponseCode { get; }
     }
 }

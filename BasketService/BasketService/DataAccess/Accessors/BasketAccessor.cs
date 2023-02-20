@@ -11,18 +11,12 @@ namespace BasketService.DataAccess.Accessors
     {
         DbConnection connection;
         IDataResponseFactory<Basket> responseFactory;
-        IDataResponseFactory<BasketItem> itemResponseFactory;
         ILogger<BasketAccessor> logger;
 
-        public BasketAccessor(
-            DbConnection connection,
-            IDataResponseFactory<Basket> responseFactory,
-            IDataResponseFactory<BasketItem> itemResponseFactory,
-            ILogger<BasketAccessor> logger)
+        public BasketAccessor(DbConnection connection, IDataResponseFactory<Basket> responseFactory, ILogger<BasketAccessor> logger)
         {
             this.connection = connection;
             this.responseFactory = responseFactory;
-            this.itemResponseFactory = itemResponseFactory;
             this.logger = logger;
         }
 

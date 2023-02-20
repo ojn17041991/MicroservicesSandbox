@@ -1,5 +1,8 @@
-﻿using Microsoft.AspNetCore.Mvc;
+﻿using MicroserviceCommonObjects.Data.DataResponses.Abstract;
+using MicroserviceCommonObjects.Enums;
+using Microsoft.AspNetCore.Mvc;
 using UserService.DataAccess.Accessors.Abstract;
+using UserService.Models;
 
 namespace UserService.Controllers
 {
@@ -15,9 +18,22 @@ namespace UserService.Controllers
         }
 
         [HttpGet("{id}")]
-        public string Get(int id)
+        public IActionResult Get(int id)
         {
-            return "value";
+            IDataResponse<User> response = userAccessor.Get(id);
+
+            if (response.ResponseCode == DataResponseCode.OK)
+            {
+                return Ok(response.Entity);
+            }
+            else if (response.ResponseCode == DataResponseCode.ResourceNotFound)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+            else
+            {
+                return StatusCode(StatusCodes.Status500InternalServerError);
+            }
         }
     }
 }

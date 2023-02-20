@@ -18,6 +18,7 @@ namespace ItemService.DataAccess.Accessors
             this.responseFactory = responseFactory;
             this.logger = logger;
         }
+
         public IDataResponse<Item> Get(int id)
         {
             throw new NotImplementedException();
