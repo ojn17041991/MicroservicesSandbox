@@ -1,6 +1,6 @@
+using MicroserviceCommonObjects.Data.DataConnectionFactories.Abstract;
+using MicroserviceCommonObjects.Data.DataConnectionFactories.Postgres;
 using MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract;
-using Npgsql;
-using System.Data.Common;
 using UserService.DataAccess.Accessors;
 using UserService.DataAccess.Accessors.Abstract;
 using UserService.DataAccess.Factories;
@@ -12,9 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 string connectionString = builder.Configuration.GetConnectionString("UserDB");
-builder.Services.AddSingleton<DbConnection>(new NpgsqlConnection(connectionString));
+builder.Services.AddTransient<DbConnectionFactory, NpgSqlConnectionFactory>(t => {
+    return new NpgSqlConnectionFactory(connectionString);
+});
 builder.Services.AddSingleton<IUserAccessor, UserAccessor>();
-builder.Services.AddSingleton<IDataResponseFactory<User>, UserResponseFactory>();
+builder.Services.AddSingleton<ISingleDataResponseFactory<User>, UserResponseFactory>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

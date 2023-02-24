@@ -2,11 +2,11 @@
 using MicroserviceCommonObjects.Data.DataResponses.Abstract;
 using MicroserviceCommonObjects.Enums;
 
-namespace BasketService.DataAccess.Response
+namespace BasketService.ServiceAccess.Responses
 {
-    public class BasketCollectionResponse : IDataResponse<IEnumerable<Basket>>
+    public class ItemResponse : IDataResponse<Item>
     {
-        public BasketCollectionResponse(IEnumerable<Basket> entity, DataResponseCode responseCode)
+        public ItemResponse(Item entity, DataResponseCode responseCode)
         {
             Entity = entity;
             ResponseCode = responseCode;
@@ -14,7 +14,7 @@ namespace BasketService.DataAccess.Response
 
 
 
-        public IEnumerable<Basket> Entity { get; }
+        public Item Entity { get; }
 
         public DataResponseCode ResponseCode { get; }
     }

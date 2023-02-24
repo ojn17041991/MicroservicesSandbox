@@ -2,9 +2,9 @@ using ItemService.DataAccess.Accessors;
 using ItemService.DataAccess.Accessors.Abstract;
 using ItemService.DataAccess.Factories;
 using ItemService.Models;
+using MicroserviceCommonObjects.Data.DataConnectionFactories.Abstract;
+using MicroserviceCommonObjects.Data.DataConnectionFactories.Postgres;
 using MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract;
-using Npgsql;
-using System.Data.Common;
 
 var builder = WebApplication.CreateBuilder(args);
 builder.Services.AddControllers();
@@ -12,9 +12,11 @@ builder.Services.AddEndpointsApiExplorer();
 builder.Services.AddSwaggerGen();
 
 string connectionString = builder.Configuration.GetConnectionString("ItemDB");
-builder.Services.AddSingleton<DbConnection>(new NpgsqlConnection(connectionString));
+builder.Services.AddTransient<DbConnectionFactory, NpgSqlConnectionFactory>(t => {
+    return new NpgSqlConnectionFactory(connectionString);
+});
 builder.Services.AddSingleton<IItemAccessor, ItemAccessor>();
-builder.Services.AddSingleton<IDataResponseFactory<Item>, ItemResponseFactory>();
+builder.Services.AddSingleton<ISingleDataResponseFactory<Item>, ItemResponseFactory>();
 
 var app = builder.Build();
 if (app.Environment.IsDevelopment())

@@ -6,7 +6,7 @@ using MicroserviceCommonObjects.Enums;
 
 namespace BasketService.DataAccess.Factories
 {
-    public class BasketResponseFactory : IDataResponseFactory<Basket>
+    public class BasketResponseFactory : ISingleDataResponseFactory<Basket>
     {
         public IDataResponse<Basket> CreateResponse(Basket entity, DataResponseCode responseCode)
         {

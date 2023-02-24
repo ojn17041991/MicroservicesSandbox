@@ -1,10 +1,7 @@
-﻿using MicroserviceCommonObjects.Data.DataResponses.Abstract;
-using MicroserviceCommonObjects.Enums;
-
-namespace MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract
+﻿namespace MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract
 {
-    public interface IDataResponseFactory<T>
+    public interface IDataResponseFactory<T> : ISingleDataResponseFactory<T>, IDataCollectionResponseFactory<T>
     {
-        IDataResponse<T> CreateResponse(T entity, DataResponseCode responseCode);
+
     }
 }

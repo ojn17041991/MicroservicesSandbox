@@ -1,10 +1,10 @@
-﻿using ItemService.DataAccess.Responses;
-using ItemService.Models;
+﻿using BasketService.Model;
+using BasketService.ServiceAccess.Responses;
 using MicroserviceCommonObjects.Data.DataResponses.Abstract;
 using MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract;
 using MicroserviceCommonObjects.Enums;
 
-namespace ItemService.DataAccess.Factories
+namespace BasketService.ServiceAccess.Factories
 {
     public class ItemResponseFactory : ISingleDataResponseFactory<Item>
     {

@@ -12,5 +12,10 @@ namespace BasketService.DataAccess.Factories
         {
             return new BasketItemResponse(entity, responseCode);
         }
+
+        public IDataResponse<IEnumerable<BasketItem>> CreateCollectionResponse(IEnumerable<BasketItem> entity, DataResponseCode responseCode)
+        {
+            return new BasketItemCollectionResponse(entity, responseCode);
+        }
     }
 }

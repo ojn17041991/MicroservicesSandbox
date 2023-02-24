@@ -6,7 +6,7 @@ using UserService.Models;
 
 namespace UserService.DataAccess.Factories
 {
-    public class UserResponseFactory : IDataResponseFactory<User>
+    public class UserResponseFactory : ISingleDataResponseFactory<User>
     {
         public IDataResponse<User> CreateResponse(User entity, DataResponseCode responseCode)
         {

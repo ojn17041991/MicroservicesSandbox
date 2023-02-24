@@ -1,5 +1,6 @@
 ﻿using ItemService.DataAccess.Accessors.Abstract;
 using ItemService.Models;
+using MicroserviceCommonObjects.Data.DataConnectionFactories.Abstract;
 using MicroserviceCommonObjects.Data.DataResponses.Abstract;
 using MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract;
 using MicroserviceCommonObjects.Enums;
@@ -9,13 +10,16 @@ namespace ItemService.DataAccess.Accessors
 {
     public class ItemAccessor : IItemAccessor
     {
-        DbConnection connection;
-        IDataResponseFactory<Item> responseFactory;
+        DbConnectionFactory connectionFactory;
+        ISingleDataResponseFactory<Item> responseFactory;
         ILogger<ItemAccessor> logger;
 
-        public ItemAccessor(DbConnection connection, IDataResponseFactory<Item> responseFactory, ILogger<ItemAccessor> logger)
+        public ItemAccessor(
+            DbConnectionFactory connectionFactory,
+            ISingleDataResponseFactory<Item> responseFactory,
+            ILogger<ItemAccessor> logger)
         {
-            this.connection = connection;
+            this.connectionFactory = connectionFactory;
             this.responseFactory = responseFactory;
             this.logger = logger;
         }
@@ -27,38 +31,39 @@ namespace ItemService.DataAccess.Accessors
 
             try
             {
-                connection.Open();
-
-                using (DbCommand command = connection.CreateCommand())
+                using (DbConnection connection = connectionFactory.CreateConnection())
                 {
-                    command.CommandText = @"
+                    connection.Open();
+
+                    using (DbCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = @"
 SELECT * FROM Items
 WHERE ID = @ItemID";
 
-                    DbParameter parameter = command.CreateParameter();
-                    parameter.ParameterName = "@ItemID";
-                    parameter.Value = id;
-                    command.Parameters.Add(parameter);
+                        DbParameter parameter = command.CreateParameter();
+                        parameter.ParameterName = "@ItemID";
+                        parameter.Value = id;
+                        command.Parameters.Add(parameter);
 
-                    using (DbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
+                        using (DbDataReader reader = command.ExecuteReader())
                         {
-                            itemFound = true;
-
-                            item = new Item()
+                            while (reader.Read())
                             {
-                                Id = Convert.ToInt32(reader["ID"]),
-                                Name = reader["Name"]?.ToString() ?? string.Empty,
-                                Description = reader["Description"]?.ToString() ?? string.Empty
-                            };
+                                itemFound = true;
 
-                            break;
+                                item = new Item()
+                                {
+                                    Id = Convert.ToInt32(reader["ID"]),
+                                    Name = reader["Name"]?.ToString() ?? string.Empty,
+                                    Description = reader["Description"]?.ToString() ?? string.Empty
+                                };
+
+                                break;
+                            }
                         }
                     }
                 }
-
-                connection.Close();
             }
             catch (Exception e)
             {

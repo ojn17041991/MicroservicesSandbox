@@ -1,4 +1,5 @@
-﻿using MicroserviceCommonObjects.Data.DataResponses.Abstract;
+﻿using MicroserviceCommonObjects.Data.DataConnectionFactories.Abstract;
+using MicroserviceCommonObjects.Data.DataResponses.Abstract;
 using MicroserviceCommonObjects.Data.DataResponses.Factories.Abstract;
 using MicroserviceCommonObjects.Enums;
 using System.Data.Common;
@@ -9,13 +10,16 @@ namespace UserService.DataAccess.Accessors
 {
     public class UserAccessor : IUserAccessor
     {
-        DbConnection connection;
-        IDataResponseFactory<User> responseFactory;
+        DbConnectionFactory connectionFactory;
+        ISingleDataResponseFactory<User> responseFactory;
         ILogger<UserAccessor> logger;
 
-        public UserAccessor(DbConnection connection, IDataResponseFactory<User> responseFactory, ILogger<UserAccessor> logger)
+        public UserAccessor(
+            DbConnectionFactory connectionFactory,
+            ISingleDataResponseFactory<User> responseFactory,
+            ILogger<UserAccessor> logger)
         {
-            this.connection = connection;
+            this.connectionFactory = connectionFactory;
             this.responseFactory = responseFactory;
             this.logger = logger;
         }
@@ -27,37 +31,38 @@ namespace UserService.DataAccess.Accessors
 
             try
             {
-                connection.Open();
-
-                using (DbCommand command = connection.CreateCommand())
+                using (DbConnection connection = connectionFactory.CreateConnection())
                 {
-                    command.CommandText = @"
+                    connection.Open();
+
+                    using (DbCommand command = connection.CreateCommand())
+                    {
+                        command.CommandText = @"
 SELECT * FROM Users
 WHERE ID = @UserID";
 
-                    DbParameter parameter = command.CreateParameter();
-                    parameter.ParameterName = "@UserID";
-                    parameter.Value = id;
-                    command.Parameters.Add(parameter);
+                        DbParameter parameter = command.CreateParameter();
+                        parameter.ParameterName = "@UserID";
+                        parameter.Value = id;
+                        command.Parameters.Add(parameter);
 
-                    using (DbDataReader reader = command.ExecuteReader())
-                    {
-                        while (reader.Read())
+                        using (DbDataReader reader = command.ExecuteReader())
                         {
-                            userFound = true;
-
-                            user = new User()
+                            while (reader.Read())
                             {
-                                Id = Convert.ToInt32(reader["ID"]),
-                                Name = reader["Name"]?.ToString() ?? string.Empty
-                            };
+                                userFound = true;
 
-                            break;
+                                user = new User()
+                                {
+                                    Id = Convert.ToInt32(reader["ID"]),
+                                    Name = reader["Name"]?.ToString() ?? string.Empty
+                                };
+
+                                break;
+                            }
                         }
                     }
                 }
-
-                connection.Close();
             }
             catch (Exception e)
             {

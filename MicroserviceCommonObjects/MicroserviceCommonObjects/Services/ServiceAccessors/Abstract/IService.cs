@@ -4,6 +4,8 @@
     {
         string ServiceName { get; }
 
+        string BaseAddress { get; }
+
         string EndPoint { get; }
     }
 }

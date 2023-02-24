@@ -1,8 +1,12 @@
 {
   "version": 2,
-  "dgSpecHash": "WAVV2p/T810sw9oISChApAbPBhuDgLogMZtQaa4eygl2U9ixWNGGVccK2BNMbSKw1dTWvl0fwhM4GbZ08NtaIw==",
+  "dgSpecHash": "BD9rVdPoGnP/DK1fPN34iUCzV4MsPIqvjQ5SEXkvddtX2nVycNoG0+Unc5xDOMhctX0x/+PYc/6iuFFgMmj/bA==",
   "success": true,
   "projectFilePath": "C:\\Users\\Oliver\\source\\repos\\MicroservicesSandbox\\MicroserviceCommonObjects\\MicroserviceCommonObjects\\MicroserviceCommonObjects.csproj",
-  "expectedPackageFiles": [],
+  "expectedPackageFiles": [
+    "C:\\Users\\Oliver\\.nuget\\packages\\microsoft.extensions.logging.abstractions\\6.0.0\\microsoft.extensions.logging.abstractions.6.0.0.nupkg.sha512",
+    "C:\\Users\\Oliver\\.nuget\\packages\\npgsql\\7.0.2\\npgsql.7.0.2.nupkg.sha512",
+    "C:\\Users\\Oliver\\.nuget\\packages\\system.runtime.compilerservices.unsafe\\6.0.0\\system.runtime.compilerservices.unsafe.6.0.0.nupkg.sha512"
+  ],
   "logs": []
 }

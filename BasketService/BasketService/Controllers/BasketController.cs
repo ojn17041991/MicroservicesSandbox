@@ -11,16 +11,14 @@ namespace BasketService.Controllers
     public class BasketController : ControllerBase
     {
         private IBasketAccessor basketAccessor;
-        private IBasketItemAccessor basketItemAccessor;
 
-        public BasketController(IBasketAccessor basketAccessor, IBasketItemAccessor basketItemAccessor)
+        public BasketController(IBasketAccessor basketAccessor)
         {
             this.basketAccessor = basketAccessor;
-            this.basketItemAccessor = basketItemAccessor;
         }
 
         [HttpGet("{id}")]
-        public IActionResult GetByUserId(int id)
+        public IActionResult Get(int id)
         {
             IDataResponse<Basket> response = basketAccessor.Get(id);
 
@@ -41,11 +39,19 @@ namespace BasketService.Controllers
         [HttpPost]
         public IActionResult Post([FromBody] BasketItem basketItem)
         {
-            IDataResponse<BasketItem> response = basketItemAccessor.Post(basketItem);
+            IDataResponse<Basket> response = basketAccessor.PostBasketItem(basketItem);
 
             if (response.ResponseCode == DataResponseCode.OK)
             {
                 return Ok(response.Entity);
+            }
+            else if (response.ResponseCode == DataResponseCode.ResourceNotFound)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
+            }
+            else if (response.ResponseCode == DataResponseCode.ResourceDuplicated)
+            {
+                return StatusCode(StatusCodes.Status409Conflict);
             }
             else
             {
@@ -56,11 +62,15 @@ namespace BasketService.Controllers
         [HttpDelete]
         public IActionResult Delete([FromBody] BasketItem basketItem)
         {
-            IDataResponse<BasketItem> response = basketItemAccessor.Delete(basketItem);
+            IDataResponse<Basket> response = basketAccessor.DeleteBasketItem(basketItem);
 
             if (response.ResponseCode == DataResponseCode.OK)
             {
                 return Ok(response.Entity);
+            }
+            else if (response.ResponseCode == DataResponseCode.ResourceNotFound)
+            {
+                return StatusCode(StatusCodes.Status404NotFound);
             }
             else
             {
