@@ -61,6 +61,11 @@ namespace BasketService.DataAccess.Accessors
             return responseFactory.CreateResponse(basket, DataResponseCode.OK);
         }
 
+        public IDataResponse<Basket> Post()
+        {
+            throw new NotImplementedException();
+        }
+
         public IDataResponse<Basket> PostBasketItem(BasketItem basketItem)
         {
             Basket basket = new Basket();

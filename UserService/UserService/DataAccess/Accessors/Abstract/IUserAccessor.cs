@@ -3,7 +3,7 @@ using UserService.Models;
 
 namespace UserService.DataAccess.Accessors.Abstract
 {
-    public interface IUserAccessor : IDataSingleGettable<User>
+    public interface IUserAccessor : IDataSingleGettable<User>, IDataPostable<User>
     {
 
     }

@@ -35,5 +35,15 @@ namespace UserService.Controllers
                 return StatusCode(StatusCodes.Status500InternalServerError);
             }
         }
+
+        [HttpPost]
+        public IActionResult Post(User user)
+        {
+            IDataResponse<User> response = userAccessor.Post(user);
+
+
+
+            return Ok(response.Entity);
+        }
     }
 }
